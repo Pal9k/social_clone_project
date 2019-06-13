@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Star Social</title>
+
+    <!-- bootstrap  -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+    <!-- google fonts
+    font-family: 'Amatic SC', cursive;-->
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC&display=swap" rel="stylesheet">
+
+    <!-- font awsome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="{% static 'social_clone_project/css/master.css' %}">
+
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg mynav" role="navigation" id="navbar">
+      <div class="container">
+        <a class="navbar-brand mynav" href="{% url 'home' %}">Star Social</a>
+        <ul class="nav navbar-nav">
+          {% if user.is_authenticated %}
+            <li class="nav-item"> <a class="nav-link" href="#">Post</a> </li>
+            <li class="nav-item"> <a class="nav-link" href="#">Groups</a> </li>
+            <li class="nav-item"> <a class="nav-link" href="#">Create Group</a> </li>
+            <li class="nav-item"> <a class="nav-link" href="{% url 'accounts:logout' %}">Log out</a> </li>
+          {% else %}
+            <li class="nav-item"> <a class="nav-link" href="#">Groups</a> </li>
+            <li class="nav-item"> <a class="nav-link" href="{% url 'accounts:login' %}">Log In</a> </li>
+            <li class="nav-item"> <a class="nav-link" href="{% url 'accounts:signup' %}">Sign Up</a> </li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+
+
+
+    <div class="container mycontent">
+      {% block content %}
+
+      {% endblock %}
+    </div>
+
+  </body>
+</html>
