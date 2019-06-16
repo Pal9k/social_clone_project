@@ -9,6 +9,7 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 # this is how we can use custom template tag
+# this helps us so, we can use related_name to grab that model with get_related_name
 from django import template
 register = template.Library()
 
@@ -42,7 +43,6 @@ class GroupMember(models.Model):
 
         def __str__(self):
             return self.user.username
-
 
         class Meta:
             unique_together = ('group','user')
