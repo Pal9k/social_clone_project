@@ -1,9 +1,10 @@
 from django.db import models
+from django.urls import reverse
 # hepls to remove extra characters like alphanumeric or underscore or hyphens
 # the use of this is if you have string and want to use as URL then it`s going to remove spaces and add dashes ...
 from django.utils.text import slugify
 # install misaka in terminal
-import misaka
+# import misaka
 
 from django.contrib.auth import get_user_model
 User = get_user_model()
@@ -27,7 +28,8 @@ class Group(models.Model):
 
     def save(self,*args,**kwargs):
         self.slug = slugify(self.name)
-        self.description_html = misaka.html(self.description)
+        # self.description_html = misaka.html(self.description)
+        self.description_html = self.description
         super().save(*args,**kwargs)
 
     def get_absolute_url(self):
@@ -38,8 +40,8 @@ class Group(models.Model):
 
 
 class GroupMember(models.Model):
-        group = models.ForeignKey(Group, related_name='memberships')
-        user = models.ForeignKey(User,related_name='user_groups')
+        group = models.ForeignKey(Group, related_name='memberships',on_delete=None)
+        user = models.ForeignKey(User,related_name='user_groups',on_delete=None)
 
         def __str__(self):
             return self.user.username

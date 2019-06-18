@@ -25,12 +25,12 @@
         <a class="navbar-brand mynav" href="{% url 'home' %}">Star Social</a>
         <ul class="nav navbar-nav">
           {% if user.is_authenticated %}
-            <li class="nav-item"> <a class="nav-link" href="#">Post</a> </li>
-            <li class="nav-item"> <a class="nav-link" href="#">Groups</a> </li>
-            <li class="nav-item"> <a class="nav-link" href="#">Create Group</a> </li>
+            <li class="nav-item"> <a class="nav-link" href="{% url 'posts:create' %}">Post</a> </li>
+            <li class="nav-item"> <a class="nav-link" href="{% url 'groups:all' %}">Groups</a> </li>
+            <li class="nav-item"> <a class="nav-link" href="{% url 'groups:create' %}">Create Group</a> </li>
             <li class="nav-item"> <a class="nav-link" href="{% url 'accounts:logout' %}">Log out</a> </li>
           {% else %}
-            <li class="nav-item"> <a class="nav-link" href="#">Groups</a> </li>
+            <li class="nav-item"> <a class="nav-link" href="{% url 'groups:all' %}">Groups</a> </li>
             <li class="nav-item"> <a class="nav-link" href="{% url 'accounts:login' %}">Log In</a> </li>
             <li class="nav-item"> <a class="nav-link" href="{% url 'accounts:signup' %}">Sign Up</a> </li>
           {% endif %}
