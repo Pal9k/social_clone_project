@@ -41,8 +41,16 @@ class PostDetail(generic.DetailView,SelectRelatedMixin):
 	select_related = ('user','group')
 
 	def get_queryset(self):
+		print("----------------------------")
 		queryset = super().get_queryset()
-		return queryset.filter(user__username__iexact=self.kwargs.get('username'))
+		print(self.kwargs.get("username"))
+		# print(queryset.filter(user__username=self.kwargs.get("username"))
+		un = self.kwargs.get("username")
+		if(un=="delete"):
+			print("yes")
+		print(un)
+		print("----------------------------")
+		return queryset.filter(user__username__iexact=self.kwargs.get("username"))
 
 class CreatePost(generic.CreateView,LoginRequiredMixin,SelectRelatedMixin):
 	fields = ('message','group')
@@ -68,5 +76,5 @@ class DeletePost(generic.DeleteView,LoginRequiredMixin,SelectRelatedMixin):
 		return queryset.filter(user_id = self.request.user.id)
 
 	def delete(self,*args,**kwargs):
-		message.success(self.request,'Post Deleted')
+		messages.success(self.request,'Post Deleted')
 		return super().delete(*args,**kwargs)

@@ -2,6 +2,8 @@
 {% load bootstrap3 %}
 
 {% block group_content %}
+
+<span>
 <h4>Create a new group!</h4>
 
   <form action="{% url 'groups:create' %}" method="post" id="groupForm">
@@ -10,4 +12,5 @@
     <input type="submit" class="btn btn-primary btn-large"  value="Create">
   </form>
   
+</span>
 {% endblock %}
